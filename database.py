@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from db import connect_to_database
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ mycursor = mydb.cursor()
 def get_data():
     mycursor.execute("SELECT * FROM `mk9-database`")
     data = mycursor.fetchall()
-    return str(data)
+    return render_template("index.html", data=data)
 
 
 if __name__ == "__main__":
